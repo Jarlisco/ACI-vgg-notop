@@ -8,6 +8,7 @@ from sklearn import metrics
 from sklearn.model_selection import GridSearchCV
 from sklearn import preprocessing
 from sklearn.model_selection import cross_val_score
+from sklearn.ensemble import RandomForestClassifier
 
 
 
@@ -28,7 +29,13 @@ y_test = np.load(output_dir + "/vgg16_features/vgg16_test_target.npy")
 target_names = ['buildings','forest','glacier','mountain','sea','street']
 
 
-print("Class distribution in train set: \n",np.unique(y_train, return_counts=True))
-print("Class distribution in test set: \n", np.unique(y_test, return_counts=True))
+# print("Class distribution in train set: \n",np.unique(y_train, return_counts=True))
+# print("Class distribution in test set: \n", np.unique(y_test, return_counts=True))
 
+X_train = preprocessing.normalize(X_train)
+X_test  = preprocessing.normalize(X_test)
 
+model = RandomForestClassifier(n_estimators=100)
+model.fit(X_train, y_train)
+
+print("VGG16 : ", model.score(X_test, y_test))

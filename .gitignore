@@ -1,2 +1,6 @@
 /data
 /data/*
+./vgg16_features/vgg16_pred_descriptors.npy
+./vgg19_features/vgg19_pred_descriptors.npy
+./xception_features/xception_pred_descriptors.npy
+./xception_features/xception_train_descriptors.npy
